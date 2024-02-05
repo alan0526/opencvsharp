@@ -180,7 +180,7 @@
       <Command>copy "$(LocalDebuggerCommand)" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x86\$(TargetFileName)"
 copy "$(LocalDebuggerCommand)" "$(SolutionDir)test\OpenCvSharp.Tests\$(TargetFileName)"
 copy "$(SolutionDir)opencv_files\opencv490_win_x86\x86\vc17\bin\opencv_videoio_ffmpeg490.dll" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x86\opencv_videoio_ffmpeg490.dll"
-copy "$(SolutionDir)opencv_files\opencv490_win_x86\x86\vc17\bin\opencv_videoio_ffmpeg490.dll" "$(SolutionDir)test\OpenCvSharp.Tests\opencv_videoio_ffmpeg490.dll"
+copy "$(OutDir)opencv_videoio_ffmpeg490.dll" "$(SolutionDir)test\OpenCvSharp.Tests\opencv_videoio_ffmpeg490.dll"
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -207,7 +207,7 @@ copy "$(SolutionDir)opencv_files\opencv490_win_x86\x86\vc17\bin\opencv_videoio_f
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>IlmImf.lib;ippicvmt.lib;ippiw.lib;ittnotify.lib;libopenjp2.lib;libjpeg-turbo.lib;libpng.lib;libprotobuf.lib;libtiff.lib;libwebp.lib;opencv_aruco490.lib;opencv_bgsegm490.lib;opencv_bioinspired490.lib;opencv_calib3d490.lib;opencv_ccalib490.lib;opencv_core490.lib;opencv_dnn490.lib;opencv_dnn_objdetect490.lib;opencv_dnn_superres490.lib;opencv_dpm490.lib;opencv_face490.lib;opencv_features2d490.lib;opencv_flann490.lib;opencv_fuzzy490.lib;opencv_hfs490.lib;opencv_highgui490.lib;opencv_imgcodecs490.lib;opencv_imgproc490.lib;opencv_img_hash490.lib;opencv_intensity_transform490.lib;opencv_line_descriptor490.lib;opencv_mcc490.lib;opencv_ml490.lib;opencv_objdetect490.lib;opencv_optflow490.lib;opencv_phase_unwrapping490.lib;opencv_photo490.lib;opencv_plot490.lib;opencv_quality490.lib;opencv_rapid490.lib;opencv_reg490.lib;opencv_rgbd490.lib;opencv_saliency490.lib;opencv_shape490.lib;opencv_stereo490.lib;opencv_stitching490.lib;opencv_structured_light490.lib;opencv_superres490.lib;opencv_surface_matching490.lib;opencv_text490.lib;opencv_tracking490.lib;opencv_video490.lib;opencv_videoio490.lib;opencv_videostab490.lib;opencv_wechat_qrcode490.lib;opencv_xfeatures2d490.lib;opencv_ximgproc490.lib;opencv_xobjdetect490.lib;opencv_xphoto490.lib;zlib.lib;ws2_32.lib;tesseract53.lib;leptonica-1.83.1.lib;archive.lib;bz2.lib;charset.lib;gif.lib;iconv.lib;jpeg.lib;libcrypto.lib;libcurl.lib;libpng16.lib;libsharpyuv.lib;libssl.lib;libxml2.lib;lz4.lib;lzma.lib;tiff.lib;turbojpeg.lib;zstd.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>NotSet</SubSystem>
@@ -222,8 +222,14 @@ copy "$(SolutionDir)opencv_files\opencv490_win_x86\x86\vc17\bin\opencv_videoio_f
     <PostBuildEvent>
       <Command>copy "$(LocalDebuggerCommand)" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x64\$(TargetFileName)"
 copy "$(LocalDebuggerCommand)" "$(SolutionDir)test\OpenCvSharp.Tests\$(TargetFileName)"
-copy "$(SolutionDir)opencv_files\opencv490_win_x64\x64\vc17\bin\opencv_videoio_ffmpeg490_64.dll" "$(SolutionDir)test\OpenCvSharp.Tests\opencv_videoio_ffmpeg490_64.dll"
-copy "$(SolutionDir)opencv_files\opencv490_win_x64\x64\vc17\bin\opencv_videoio_ffmpeg490_64.dll" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x64\opencv_videoio_ffmpeg490_64.dll"</Command>
+copy "$(OutDir)hdf5.dll" "$(SolutionDir)test\OpenCvSharp.Tests\hdf5.dll"
+copy "$(OutDir)hdf5.dll" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x64\hdf5.dll"
+copy "$(OutDir)opencv_videoio_ffmpeg490_64.dll" "$(SolutionDir)test\OpenCvSharp.Tests\opencv_videoio_ffmpeg490_64.dll"
+copy "$(OutDir)opencv_videoio_ffmpeg490_64.dll" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x64\opencv_videoio_ffmpeg490_64.dll"
+copy "$(OutDir)opencv_img_hash490.dll" "$(SolutionDir)test\OpenCvSharp.Tests\opencv_img_hash490.dll"
+copy "$(OutDir)opencv_img_hash490.dll" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x64\opencv_img_hash490.dll"
+copy "$(OutDir)opencv_world490.dll" "$(SolutionDir)test\OpenCvSharp.Tests\opencv_world490.dll"
+copy "$(OutDir)opencv_world490.dll" "$(SolutionDir)test\OpenCvSharp.Tests\dll\x64\opencv_world490.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -355,6 +361,17 @@ copy "$(SolutionDir)opencv_files\opencv490_win_x64\x64\vc17\bin\opencv_videoio_f
     <ClInclude Include="ximgproc_SuperPixel.h" />
     <ClInclude Include="xphoto.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\packages\opencv_cuda_world.4.9.0.1\build\native\opencv_cuda_world.targets" Condition="Exists('..\..\packages\opencv_cuda_world.4.9.0.1\build\native\opencv_cuda_world.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\opencv_cuda_world.4.9.0.1\build\native\opencv_cuda_world.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\opencv_cuda_world.4.9.0.1\build\native\opencv_cuda_world.targets'))" />
+  </Target>
 </Project>
